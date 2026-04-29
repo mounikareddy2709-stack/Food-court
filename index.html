@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Food Court</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-image: url('https://static.vecteezy.com/system/resources/thumbnails/021/428/963/small/background-junk-food-related-seamless-pattern-and-background-editable-stroke-fast-food-line-art-of-hamburger-pizza-hot-dog-beverage-cheeseburger-restaurant-menu-background-free-vector.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: #fff;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    h1.restaurant-name {
+      text-align: center;
+      font-size: 36px;
+      color: #ffcc00;
+      margin-bottom: 20px;
+    }
+
+    .search-box {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .search-box input {
+      width: 300px;
+      padding: 8px;
+      border-radius: 4px;
+      border: none;
+    }
+
+    #recipeList {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .recipe {
+      background-color: #fff;
+      color: #000;
+      border-radius: 8px;
+      padding: 10px;
+      text-align: center;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+
+    .recipe:hover {
+      transform: scale(1.03);
+      box-shadow: 4px 4px 12px rgba(0,0,0,0.4);
+    }
+
+    .recipe h1 {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .recipe p {
+      font-weight: bold;
+      margin: 5px 0 10px;
+      color: #d32f2f;
+    }
+
+    .recipe img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    @media (max-width: 768px) {
+      #recipeList {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      #recipeList {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <h1 class="restaurant-name">Food Court</h1>
+
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search your recipe" onkeyup="filterRecipes()">
+    </div>
+
+    <div id="recipeList">
+      <div class="recipe" data-type="veg"><h1>Butter Naan</h1><p>₹50/-</p><img src="https://s3-ap-southeast-1.amazonaws.com/asia.urbanpiper.com/media/bizmedia/2021/10/20/Butter_naan_COMPRESSED.jpg"></div>
+      <div class="recipe" data-type="veg"><h1>Paneer Butter Masala</h1><p>₹200/-</p><img src="https://www.ruchiskitchen.com/wp-content/uploads/2020/12/Paneer-Butter-Masala-9.jpg"></div>
+      <div class="recipe" data-type="non-veg"><h1>Chicken Biryani</h1><p>₹300/-</p><img src="https://nodashofgluten.com/wp-content/uploads/2025/02/Hyderabadi-Chicken-Biryani-Recipe-1.png.webp"></div>
+      <div class="recipe" data-type="veg"><h1>Gobi Manchurian</h1><p>₹180/-</p><img src="https://www.indianhealthyrecipes.com/wp-content/uploads/2022/02/gobi-manchurian-cauliflower-manchurian.jpg"></div>
+      <div class="recipe" data-type="non-veg"><h1>Chilli Chicken</h1><p>₹220/-</p><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThN2etbfWCvYoN-jsMLc0522fdTF3b7UVuiw&s"></div>
+      <div class="recipe" data-type="non-veg"><h1>Chicken Lollipop</h1><p>₹230/-</p><img src="https://cdn.prod.website-files.com/654369dcffba1c0eb478187e/676467ea7415e6e5715affd9_IMG_2965.jpeg"></div>
+      <div class="recipe" data-type="non-veg"><h1>Fish Fry</h1><p>₹250/-</p><img src="https://media.istockphoto.com/id/620402520/photo/fish-fry-served-on-banana-leaf.jpg?s=1024x1024&w=is&k=20&c=taX_XJ8yrzYhlFNqswIcUwd_8_15J4tESUu35nMYiQY="></div>
+      <div class="recipe" data-type="non-veg"><h1>Mutton Curry</h1><p>₹450/-</p><img src="https://i.ytimg.com/vi/6TQcHLwOSNA/hq720.jpg"></div>
+      <div class="recipe" data-type="veg"><h1>Vanilla IceCream</h1><p>₹120/-</p><img src="https://delightfuladventures.com/wp-content/uploads/2024/09/vegan-vanilla-ice-cream-recipe.jpg"></div>
+      <div class="recipe" data-type="veg"><h1>Chocolate IceCream</h1><p>₹130/-</p><img src="https://img.sndimg.com/food/image/upload/f_auto,c_thumb,q_55,w_iw/v1/img/recipes/22/06/9/8hEwLDNaTS682SgylIKU_1.1sundaeredo.jpg"></div>
+      <div class="recipe" data-type="veg"><h1>ButterScotch IceCream</h1><p>₹130/-</p><img src="https://i.ytimg.com/vi/L3ghuX1PlG8/sddefault.jpg"></div>
+      <div class="recipe" data-type="veg"><h1>Strawberry IceCream</h1><p>₹130/-</p><img src="https://itdoesnttastelikechicken.com/wp-content/uploads/2022/07/best-vegan-strawberry-ice-cream-recipe-no-coconut-without-ice-cream-maker-500x500.jpg"></div>
+      <div class="recipe" data-type="veg"><h1>Pan Cakes</h1><p>₹150/-</p><img src="https://www.inspiredtaste.net/wp-content/uploads/2025/07/Pancake-Recipe-1.jpg"></div>
+      <div class="recipe" data-type="veg"><h1>Oreo ThickShake</h1><p>₹140/-</p><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUCqnsVW-ia6owvw1rpsXLRJ5jFfvD87mvNA&s"></div>
+      <div class="recipe" data-type="veg"><h1>Cold Coffee</h1><p>₹130/-</p><img src="https://mytastycurry.com/wp-content/uploads/2020/04/Cafe-style-cold-coffee-with-icecream.jpg"></div>
+      <div class="recipe" data-type="veg"><h1>Mango Juice</h1><p>₹100/-</p><img src="https://www.ticomachine.com/uploads/mango-juice-production-line8.jpg"></div>
+      <div class="recipe" data-type="veg"><h1>Grape Juice</h1><p>₹100/-</p><img src="https://www.alphafoodie.com/wp-content/uploads/2022/03/How-to-Make-Grape-Juice-Square.jpeg"></div>
+      <div class="recipe" data-type="veg"><h1>French Fries</h1><p>₹90/-</p><img src="https://www.thegraciouspantry.com/wp-content/uploads/2024/09/french-fries-.jpg"></div>
+      <div class="recipe" data-type="non-veg"><h1>Burger</h1><p>₹100/-</p><img src="https://c.ndtvimg.com/2022-06/gp4k2jro_burgers_625x300_20_June_22.jpg"></div>
+      <div class="recipe" data-type="veg"><h1>Cheese Cake</h1><p>₹140/-</p><img src="https://i.ytimg.com/vi/3Am4DfPB2Dk/hq720.jpg"></div>
+      <div class="recipe" data-type="veg"><h1>Veg Pizza</h1><p>₹150/-</p><img src="https://www.solara.in/cdn/shop/articles/veg_loaded_pizza.jpg?v=1711618676&width=2048"></div>
+    </div>
+  </div> 
+
+  <script>
+    function filterRecipes() {
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      const recipes = document.querySelectorAll(".recipe");
+
+      recipes.forEach(recipe => {
+        const name = recipe.querySelector("h1").textContent.toLowerCase();
+        const type = recipe.getAttribute("data-type");
+        recipe.style.display = name.includes(input) || type.includes(input) ? "block" : "none";
+      });
+    }
+
+    // 🔗 Make images clickable and redirect with food name in URL
+    document.addEventListener("DOMContentLoaded", () => {
+      const recipes = document.querySelectorAll(".recipe img");
+      recipes.forEach(img => {
+        img.addEventListener("click", () => {
+          const itemName = img.parentElement.querySelector("h1").textContent;
+          window.location.href = `checkout.html?item=${encodeURIComponent(itemName)}`;
+        });
+      });
+    });
+  </script>
+</body>
+</html>
