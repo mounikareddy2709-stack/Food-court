@@ -1,0 +1,44 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+.input-section {
+    margin-bottom: 20px;
+}
+
+.input-section input {
+    width: 300px;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+.input-section button {
+    padding: 8px 16px;
+}
+
+.recipe-name {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.image-display img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    margin-top: 10px;
+    display: block;
+}
+#recipeList {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr); /* fixed to 3 columns */
+  gap: 20px;
+}
